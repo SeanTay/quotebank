@@ -3,9 +3,20 @@ var app = express();
 
 app.set("view engine", "hbs");
 
-app.listen(4000, function(){
-  console.log("app listening on port 4000");
+app.listen(process.env.PORT || 3000, function(){
+  console.log("app listening on port 3000");
 });
+
+app.get('/', function(req, res){
+  res.render("index");
+})
+
+app.engine(".hbs", hbs({
+  extname:        ".hbs",
+  partialsDir:    "views/",
+  layoutsDir:     "views/",
+  defaultLayout:  "layout"
+}));
 
 var compliments =[
   "We've all got both light and dark inside us. What matters is the part we choose to act on. That's who we really are. - J.K. Rowling",
